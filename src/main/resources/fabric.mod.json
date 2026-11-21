@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "measuringmod",
+	"version": "${version}",
+	"name": "measuringmod",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "All-Rights-Reserved",
+	"icon": "assets/measuringmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.example.measuringmod.Measuringmod"
+		],
+		"client": [
+			"com.example.measuringmod.client.MeasuringmodClient"
+		],
+		"fabric-datagen": [
+			"com.example.measuringmod.client.MeasuringmodDataGenerator"
+		]
+	},
+	"mixins": [
+		"measuringmod.mixins.json",
+		{
+			"config": "measuringmod.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
