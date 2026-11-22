@@ -2,19 +2,20 @@ package com.example.measuringmod.client.command;
 
 import com.example.measuringmod.client.measurement.MeasuringClientManager;
 import com.mojang.brigadier.context.CommandContext;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 
 public class MeasureClientCommands {
-    public static int ToggleMeasureMode(CommandContext<CommandSourceStack> context){
+    public static int ToggleMeasureMode(CommandContext<FabricClientCommandSource> context){
         if (MeasuringClientManager.GetMeasuringMode()){
-
-
-            context.getSource().sendSuccess(() -> Component.literal("[MeasuringMod] Measuring mode deactivated!"), false);
+            MeasuringClientManager.SetMeasuringMode(false);
+            MeasuringClientManager.clear();
+            context.getSource().sendFeedback(Component.literal("[MeasuringMod] Measuring mode deactivated!"));
         }
         else{
-
-            context.getSource().sendSuccess(() -> Component.literal("[MeasuringMod] Measuring mode activated!"), false);
+            MeasuringClientManager.SetMeasuringMode(true);
+            context.getSource().sendFeedback(Component.literal("[MeasuringMod] Measuring mode activated!"));
         }
         return 0;
     }
